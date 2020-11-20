@@ -2,18 +2,19 @@ import React from "react"
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
 
-const MyPosts = () => {
+const MyPosts = (props) => {
     return (
         <>
+            <div>
+                My posts
                 <div>
-                    My posts
+                    <textarea></textarea>
+                    <button>Add post</button>
                 </div>
-                <div>
-                    New post
-                </div>
+            </div>
             <div className={classes.posts}>
-               <Post messages='WTF?' likes='15' />
-               <Post messages='Я молодой тупак' likes='23' />
+                <Post messages='WTF?' likes='15'/>
+                <Post messages='Я молодой тупак' likes='23'/>
             </div>
         </>
     );
