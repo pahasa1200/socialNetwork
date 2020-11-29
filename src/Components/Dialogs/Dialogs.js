@@ -1,41 +1,40 @@
 import React from 'react';
-import classes from './Dialog.module.css';
-import {NavLink} from "react-router-dom";
+import classes from './Dialogs.module.css';
+import Dialog from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
 
-
-const DialogItem = (props) =>{
-    let path = '/dialogs/' + props.id
-    return (
-        <div className={classes.dialog + ' ' + classes.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-const Messages = (props) =>{
-    return (
-        <div className={classes.message}>{props.message}</div>
-    )
-}
 
 const Dialogs = (props) => {
-    return(
+
+    let state = props.dialogsPage
+
+    let dialogsElements = state.dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>);
+
+    let messageElements = state.messageData.map(message => <Message message={message.message} id={message.id}/>);
+
+    let newMessage = () => {
+        props.newMessage();
+    }
+    let onTextChange = (e) => {
+        let text = e.target.value;
+        props.onTextChange(text);
+    }
+    return (
         <>
             <div className={classes.dialogs}>
                 <div className={classes.dialogsItems}>
-                    <DialogItem name='Pavel' id='1' />
-                    <DialogItem name='Kasha' id='2' />
-                    <DialogItem name='Andrey' id='3' />
-                    <DialogItem name='Masha' id='4' />
-                    <DialogItem name='Viktor' id='5' />
+                    {dialogsElements}
                 </div>
                 <div className={classes.messages}>
-                    <Messages message='Hi' />
-                    <Messages message="What's up?" />
-                    <Messages message="Yo" />
+                    {messageElements}
+                    <textarea placeholder= "Enter your message!" onChange={onTextChange} value={state.newMessageText}/>
+                    <button onClick={newMessage} >Add message</button>
+                </div>
+                <div>
+
                 </div>
             </div>
-            </>
+        </>
     )
 }
 
