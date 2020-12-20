@@ -1,15 +1,20 @@
 import React from "react"
 import classes from './Profile.module.css'
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import store from "../../Redux/store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {updateUserStatus} from "../../Redux/profile-reducer";
 
 const Profile = (props) => {
+    debugger;
     return (
         <>
-            <div className={classes.content}>
-                <ProfileInfo/>
+            <div>
+                <ProfileInfo saveProfile = {props.saveProfile}
+                             savePhoto={props.savePhoto}
+                             isOwner={props.isOwner}
+                             profile={props.profile}
+                             status={props.status}
+                             updateUserStatus={props.updateUserStatus}/>
                 <MyPostsContainer />
             </div>
         </>

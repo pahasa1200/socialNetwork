@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import Dialog from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 
 const Dialogs = (props) => {
@@ -27,8 +28,7 @@ const Dialogs = (props) => {
                 </div>
                 <div className={classes.messages}>
                     {messageElements}
-                    <textarea placeholder= "Enter your message!" onChange={onTextChange} value={state.newMessageText}/>
-                    <button onClick={newMessage} >Add message</button>
+                    <AddMessageForm onSubmit={newMessage}/>
                 </div>
                 <div>
 
