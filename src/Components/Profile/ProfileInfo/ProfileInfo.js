@@ -7,6 +7,7 @@ import userPhoto from "../../../Asserts/images/usersPhoto.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 
 
+
 const ProfileInfo = (props) => {
     let [editMode, setEditMode] = useState(false);
 

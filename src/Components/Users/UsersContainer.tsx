@@ -1,11 +1,6 @@
 import React from "react"
 import {connect} from "react-redux";
 import {
-    setCurrent,
-    setIsFetching,
-    setTotalUsersCount,
-    setUsers,
-    togleIsFollowing,
     getUsers,
     getFollow,
     getUnfollow
@@ -22,14 +17,37 @@ import {
     getTotalUsersCount
 } from "../../Redux/users-selectors";
 import User from "./User";
+import {AppStateType} from "../../Redux/redux-store";
+import {UserType} from "../../Types/types";
 
-class UsersContainer extends React.Component {
+type MapStatePropsType = {
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    totalUsersCount: number
+    users: Array<UserType>
+    followingInProgress: Array<number>
+}
+
+type MapDispatchPropsType = {
+    getUnfollow: (userId: number) => void
+    getFollow: (userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+}
+
+type OwnPropsType = {
+
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         const {currentPage, pageSize} = this.props;
         this.props.getUsers(currentPage, pageSize);
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
         const {pageSize} = this.props;
         this.props.getUsers(pageNumber, pageSize);
     }
@@ -44,30 +62,26 @@ class UsersContainer extends React.Component {
                    users={this.props.users}
                    getFollow={this.props.getFollow}
                    getUnfollow={this.props.getUnfollow}
-                   togleIsFollowing={this.props.togleIsFollowing}
                    followingInProgress = {this.props.followingInProgress}/>
         </>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getAllUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         followingInProgress: getFollowingInProgress(state),
+        isFetching: state.usersPage.isFetching
     }
 }
 export default compose(
-    connect(mapStateToProps, {
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
+        mapStateToProps, {
         getFollow,
         getUnfollow,
-        setUsers,
-        setCurrent,
-        setTotalUsersCount,
-        setIsFetching,
-        togleIsFollowing,
         getUsers
     }),
     withAuthRedicect

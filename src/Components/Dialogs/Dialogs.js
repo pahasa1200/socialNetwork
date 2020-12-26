@@ -13,12 +13,8 @@ const Dialogs = (props) => {
 
     let messageElements = state.messageData.map(message => <Message message={message.message} id={message.id}/>);
 
-    let newMessage = () => {
-        props.newMessage();
-    }
-    let onTextChange = (e) => {
-        let text = e.target.value;
-        props.onTextChange(text);
+    let newMessage = (values) => {
+        props.addMessage(values.newMessageBody);
     }
     return (
         <>
