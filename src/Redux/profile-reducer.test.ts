@@ -11,7 +11,7 @@ let state = {
     status: ""
 }
 
-it('new post should be added', () => {
+test('new post should be added', () => {
     let action = actions.addPostActionCreator("hi");
     let newState = profileReducer(state, action);
     expect(newState.postData.length).toBe(3);

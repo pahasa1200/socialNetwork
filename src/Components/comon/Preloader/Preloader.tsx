@@ -1,7 +1,10 @@
 import React from 'react';
 import preloader from './../../../Asserts/images/preloader.gif'
 import classes from './Preloader.module.css'
-let Preloader = (props) => {
+type PropsType = {
+
+}
+const Preloader: React.FC<PropsType> = (props) => {
     return(
         <>
             <div >

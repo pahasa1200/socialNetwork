@@ -7,9 +7,10 @@ type GetFollowResponseType = {
     data: { userId: number, followStatus: boolean | null }
 }
 export const usersApi = {
-    getUsers: (currentPage = 1, pageSize = 5) => {
+    getUsers: (currentPage = 1, pageSize = 5, term: string= '', friend: null | boolean = null) => {
         return (
-            instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`,).then(res => res.data)
+            instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`) )
+                .then(res => res.data)
         )
     },
     getFollow: (userId: number) => {
