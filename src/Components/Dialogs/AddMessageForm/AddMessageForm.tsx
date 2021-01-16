@@ -1,21 +1,24 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import classes from '../Dialogs.module.css'
 import {createField, Textarea} from "../../comon/FormsControls/FormsControls";
 import {maxLengthCreator, requieredField} from "../../../Utils/Validators/validators";
 import {NewMessageFormType} from "../Dialogs";
+import {Button} from "react-bootstrap";
 
 type DialogsFormValuesTypeKeys = Extract<keyof NewMessageFormType, string>
 type PropsType = {}
 const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormType, PropsType> & PropsType> = (props) => {
     return (
         <>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={props.handleSubmit} >
                 <div>
-                    {createField<DialogsFormValuesTypeKeys>("Enter your message", 'newMessageBody', [requieredField], Textarea)}
+                    <button className={`btn-danger ${classes.addNewMessageButton}`}>Send</button>
                 </div>
-                <div>
-                    <button>Send</button>
+                <div className={classes.formAddMessage}>
+                    {createField<DialogsFormValuesTypeKeys>("Enter your message", 'newMessageBody', [requieredField], Textarea, classes.addNewMessageArea)}
                 </div>
+
             </form>
             </>
     )

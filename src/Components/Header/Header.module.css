@@ -1,4 +1,19 @@
 .header {
-    grid-area: h;
-    background-color: green;
+    background-color: black;
+    color: white;
+    height: 50px;
+}
+.login{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    margin-top:  -18px;
+    float: right;
+}
+.loginButton{
+    display: inline-block;
+    margin-top:  -18px;
+    margin-right: 10px;
+    float: right;
+
 }

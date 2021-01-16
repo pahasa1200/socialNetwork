@@ -1,0 +1,20 @@
+.postsContainer{
+    margin-top: 50px;
+}
+.posts{
+    background-color: #dfdfdf;
+    border-radius: 15px;
+}
+.postsArea{
+    display: inline-block;
+    width: 100%;
+}
+h3{
+    text-align: center;
+}
+.buttonAdd{
+    float: right;
+}
+.addPostTextarea{
+    width: 100%;
+}

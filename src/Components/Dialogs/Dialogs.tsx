@@ -22,24 +22,29 @@ const Dialogs: React.FC<PropsType> = (props) => {
     let messageElements = state.messageData.map(message => <Message message={message.message} key={message.id}/>);
 
 
-    let newMessage = (values: NewMessageFormType) => {
+    const newMessage = (values: NewMessageFormType) => {
         props.addMessage(values.newMessageBody);
     }
     return (
-        <>
-            <div className={classes.dialogs}>
-                <div className={classes.dialogsItems}>
-                    {dialogsElements}
-                </div>
-                <div className={classes.messages}>
-                    {messageElements}
-                    <AddMessageForm onSubmit={newMessage}/>
-                </div>
-                <div>
-
+        <div>
+            <div className={`${classes.dialogs} container`}>
+                <div className='row'>
+                    <div className='col-4'>
+                        <div className={classes.dialogsItems}>
+                            {dialogsElements}
+                        </div>
+                    </div>
+                    <div className='col-8'>
+                        <div className={classes.messages} style={{overflowY: 'auto', height: '450px'}}>
+                            {messageElements}
+                        </div>
+                        <div className={classes.addNewMessageArea}>
+                            <AddMessageForm onSubmit={newMessage}/>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

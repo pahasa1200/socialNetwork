@@ -6,6 +6,7 @@ import ProfileStatus from "./ProfileStatus";
 import userPhoto from "../../../Asserts/images/usersPhoto.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from "../../../Types/types";
+import {Button, Col, Container, Image, Row} from "react-bootstrap";
 
 type PropsType = {
     profile: ProfileType | null
@@ -22,12 +23,6 @@ const ProfileInfo: React.FC<PropsType> = (props) => {
         return <Preloader/>
     }
 
-    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length) {
-            props.savePhoto(e.target.files[0])
-        }
-    }
-
     const onSubmit = (formData: ProfileType) => {
         props.saveProfile(formData).then
         (
@@ -39,24 +34,30 @@ const ProfileInfo: React.FC<PropsType> = (props) => {
 
     return (
         <>
-            <div className={classes.content}>
-                <div>
-                    {/*<img src={'http://neonmamacita.com/wp-content/uploads/2012/08/Natalie_Cottee_Woods04.jpg'}*/}
-                    {/*     className={classes.headImage}/>*/}
+            <Container className={classes.profileInfoContainer}>
+                <Row>
+                    <Col md={4}>
+                        <Image className={classes.headImage} src={props.profile.photos.large || userPhoto} alt="Avatar" thumbnail/>
+                        <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    </Col>
+                    <Col md={4} className={classes.contacts}>
+                        {editMode
+                            ?
+                            <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} savePhoto={props.savePhoto} />
+                            : <ProfileData goToEditMode={() => {
+                                setEditMode(true)
+                            }} profile={props.profile} isOwner={props.isOwner}/>}
+                    </Col>
+                    <Col md={4} >
+                        {(props.isOwner && !editMode) && <div>
+                        <Button  size = 'sm' type='danger' onClick={() => {
+                            setEditMode(true)
+                        }}>edit profile</Button>
+                    </div>}
 
-                </div>
-                <div>
-                    <img src={props.profile.photos.large || userPhoto} alt="Dimy4"/>
-                    {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                    <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
-                </div>
-                {editMode
-                    ? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
-                    : <ProfileData goToEditMode={() => {
-                        setEditMode(true)
-                    }} profile={props.profile} isOwner={props.isOwner}/>}
-
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </>
     );
 }
@@ -74,10 +75,7 @@ type ProfilePropsDataTypes = {
     goToEditMode: () => void
 }
 const ProfileData: React.FC<ProfilePropsDataTypes> = ({profile, isOwner, goToEditMode}) => {
-    return <div>
-        {isOwner && <div>
-            <button onClick={goToEditMode}>edit</button>
-        </div>}
+    return <div className={classes.contactsBlock}>
         <div>
             <b>Full name</b>: {profile.fullName}
         </div>
@@ -97,6 +95,7 @@ const ProfileData: React.FC<ProfilePropsDataTypes> = ({profile, isOwner, goToEdi
             return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
         })}
         </div>
+
     </div>
 }
 

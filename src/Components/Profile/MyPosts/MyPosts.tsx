@@ -5,6 +5,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, GetStringKeys, Input, Textarea} from "../../comon/FormsControls/FormsControls";
 import {requieredField} from "../../../Utils/Validators/validators";
 import {PostDataType} from "../../../Types/types";
+import {Col, Container, Row} from "react-bootstrap";
 
 
 type PropsType = {
@@ -13,13 +14,13 @@ type PropsType = {
 
 const AddNewPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType>
     & PropsType> = React.memo(props => {
-    return (<form onSubmit={props.handleSubmit}>
+    return (<form className={classes.postsArea} onSubmit={props.handleSubmit}>
             <div>
                 {createField<GetStringKeys<AddPostFormValuesType>>("Your post",
-                    'newPostText', [requieredField], Textarea)}
+                    'newPostText', [requieredField], Textarea, classes.addPostTextarea)}
             </div>
             <div>
-                <button>Add post</button>
+                <button className={`btn-dark ${classes.buttonAdd}`}>Add post</button>
             </div>
         </form>
     )
@@ -47,17 +48,25 @@ const MyPosts: React.FC<MapPropsType & MapDispatchType> = (props) => {
     }
 
     return (
-        <>
-            <div>
-                My posts
-                <div>
-                    <AddNewPostFormForRedux onSubmit={onAddPost}/>
-                </div>
-            </div>
-            <div className={classes.posts}>
-                {postElements}
-            </div>
-        </>
+        <div>
+            <Container className={classes.postsContainer}>
+                <Row className={'ml-auto mr-auto'}>
+                    <Col md={4}> </Col>
+                    <Col md={4} className={classes.posts}>
+                        <div>
+                            <h3 >Posts</h3>
+                            <div>
+                                <AddNewPostFormForRedux onSubmit={onAddPost}/>
+                            </div>
+                        </div>
+                        <div className={classes.posts}>
+                            {postElements}
+                        </div>
+                    </Col>
+                    <Col md={4}> </Col>
+                </Row>
+            </Container>
+        </div>
     );
 }
 

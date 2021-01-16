@@ -6,12 +6,12 @@ import {updateUserStatus} from "../../Redux/profile-reducer";
 import {ProfileType} from "../../Types/types";
 
 type PropsType = {
-    profile: ProfileType | null
-    status: string
-    updateUserStatus: (status: string) => void
-    isOwner: boolean
-    savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileType) => Promise<any>
+    profile: null | ProfileType,
+    status: string,
+    updateUserStatus: (status: string) => void,
+    isOwner: boolean,
+    savePhoto: (file: File) => void,
+    saveProfile: (profile: ProfileType) => Promise<any>,
 }
 
 const Profile: React.FC<PropsType> = (props) => {

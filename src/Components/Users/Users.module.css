@@ -5,3 +5,23 @@
 .selectedPage{
     font-weight: bold;
 }
+.buttonFollowUnfollow{
+    display: inline-block;
+    justify-content: center;
+    margin-left: 15px;
+    margin-top: 10px ;
+}
+.blockText{
+    margin-left: 10px;
+}
+.searchingForm{
+    margin-top: 20px;
+}
+.dropdownFriend{
+    display: inline-block;
+    height: 30px;
+    margin-left: 10px;
+}
+.buttonFriend{
+    margin-left: 10px;
+}

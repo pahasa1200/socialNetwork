@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from "./Paginator.module.css";
 import cn from "classnames"
+import { Pagination } from 'react-bootstrap';
 
 type PropsType = {
     totalItemsCount: number
@@ -9,7 +10,7 @@ type PropsType = {
     onPageChanged?: (pageNumber: number) => void
     portionSize?: number
 }
-let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage = 1, onPageChanged = x => x , portionSize = 10}) => {
+let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage = 1, onPageChanged = x => x , portionSize = 7}) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
@@ -25,23 +26,31 @@ let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage = 
 
 
     return <div className={styles.paginator}>
-        { portionNumber > 1 &&
-        <button onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> }
-
-        {pages
-            .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
-            .map((p) => {
-                return <span className={ cn({
-                    [styles.selectedPage]: currentPage === p
-                }, styles.pageNumber)}
-                             key={p}
-                             onClick={(e) => {
-                                 onPageChanged(p);
-                             }}>{p}</span>
-            })}
-        { portionCount > portionNumber &&
-        <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> }
+        <Pagination>
+            {portionNumber > 1 &&
+            <Pagination.Prev onClick={() => {
+                setPortionNumber(portionNumber - 1)
+            }}/>
+            }
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
+                .map((p) => {
+                    return <Pagination.Item active={currentPage === p && true} className={ cn({
+                        [styles.selectedPage]: currentPage === p
+                    }, styles.pageNumber)}
+                                 key={p}
+                                 onClick={(e) => {
+                                     onPageChanged(p);
+                                 }}>{p}</Pagination.Item>
+                })}
+            {portionCount > portionNumber &&
+            <Pagination.Next onClick={() => {
+                setPortionNumber(portionNumber + 1)
+            }}/>
+            }
+            </Pagination>
     </div>
+
 }
 
 export default Paginator;

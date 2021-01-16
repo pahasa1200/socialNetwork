@@ -1,4 +1,27 @@
 .headImage{
-    width: 700px;
+    width: 100%;
     height: auto;
+    border-radius: 15px;
+    display: block;
+    text-align: center;
+}
+.contactsBlock{
+
+}
+
+.statusText {
+    text-align: center;
+}
+.content {
+    margin-top: 10px;
+}
+.contacts{
+    background-color: #dfdfdf;
+    border-radius: 15px;
+}
+.profileInfoContainer{
+    margin-top: 20px;
+}
+.saveButton{
+    margin-top: 15px;
 }

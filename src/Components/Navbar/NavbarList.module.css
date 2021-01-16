@@ -1,6 +1,5 @@
 .nav {
-    grid-area: n;
-    background-color: gray;
+    background-color: #dfdfdf;
     padding: 20px;
 }
 .item a {
@@ -10,4 +9,8 @@
 }
 .item a.activeLink {
     color: green;
+}
+
+.containerNav {
+    margin: 0 0 0 0;
 }

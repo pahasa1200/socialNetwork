@@ -6,7 +6,9 @@ type PropsType = {
 }
 const Message: React.FC<PropsType> = (props) => {
     return (
-        <div className={classes.message}>{props.message}</div>
+        <div className={classes.message}>{props.message}
+            <hr/>
+        </div>
     )
 }
 
