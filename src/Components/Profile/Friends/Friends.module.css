@@ -1,0 +1,12 @@
+.friendPhoto{
+    height: auto;
+    width: 60px;
+    margin-right: 10px;
+}
+.friendsBlock{
+    float: left;
+    margin-top: 20px;
+}
+.friendsButton{
+    margin-bottom: 10px;
+}

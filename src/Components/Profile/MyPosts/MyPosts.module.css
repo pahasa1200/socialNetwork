@@ -1,9 +1,12 @@
 .postsContainer{
     margin-top: 50px;
+    padding: 0px!important;
+
 }
 .posts{
-    background-color: #dfdfdf;
     border-radius: 15px;
+    border: aliceblue 5px solid;
+    background-color: #dfdfdf;
 }
 .postsArea{
     display: inline-block;

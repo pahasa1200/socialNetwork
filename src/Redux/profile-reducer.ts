@@ -8,8 +8,8 @@ import {profileApi} from "../API/profile-api";
 //state
 let initialState = {
     postData: [
-        {id: 1, message: "WTF?", likes: 12},
-        {id: 2, message: "Я молодой тупак", likes: 14},
+        {id: 1, message: "Hello", likes: 12},
+        {id: 2, message: "Haha", likes: 14},
     ] as Array<PostDataType>,
     newPostText: "",
     profile: null as null | ProfileType ,

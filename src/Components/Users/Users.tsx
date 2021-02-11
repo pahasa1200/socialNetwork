@@ -21,8 +21,6 @@ type PropsType = {
 }
 
 export const Users: React.FC<PropsType> = (props) => {
-    debugger;
-
     const totalUsersCount = useSelector(getTotalUsersCount)
     const currentPage = useSelector(getCurrentPage)
     const pageSize = useSelector(getPageSize)

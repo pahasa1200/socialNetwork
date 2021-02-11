@@ -2,7 +2,6 @@ import React, {ChangeEvent, useState} from "react"
 import classes from './ProfileInfo.module.css'
 import Preloader from "../../comon/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
-import ProfileStatus from "./ProfileStatus";
 import userPhoto from "../../../Asserts/images/usersPhoto.jpg";
 import ProfileDataForm from "./ProfileDataForm";
 import {ContactsType, ProfileType} from "../../../Types/types";
@@ -52,7 +51,7 @@ const ProfileInfo: React.FC<PropsType> = (props) => {
                         {(props.isOwner && !editMode) && <div>
                         <Button  size = 'sm' type='danger' onClick={() => {
                             setEditMode(true)
-                        }}>edit profile</Button>
+                        }}>Edit profile</Button>
                     </div>}
 
                     </Col>
@@ -66,7 +65,7 @@ type ContactsPropsType = {
     contactValue: string
 }
 const Contact: React.FC<ContactsPropsType> = ({contactTitle, contactValue}) => {
-    return <div><b>{contactTitle}</b>: {contactValue}</div>
+    return <div className={classes.items}><b>{contactTitle}</b>: {contactValue}</div>
 }
 
 type ProfilePropsDataTypes = {
@@ -76,26 +75,25 @@ type ProfilePropsDataTypes = {
 }
 const ProfileData: React.FC<ProfilePropsDataTypes> = ({profile, isOwner, goToEditMode}) => {
     return <div className={classes.contactsBlock}>
-        <div>
+        <div className={classes.items}>
             <b>Full name</b>: {profile.fullName}
         </div>
-        <div>
+        <div className={classes.items}>
             <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
         </div>
         {profile.lookingForAJob &&
-        <div>
+        <div className={classes.items}>
             <b>My professioanal skills</b>: {profile.lookingForAJobDescription}
         </div>
         }
-        <div>
+        <div className={classes.items}>
             <b>About me</b>: {profile.aboutMe}
         </div>
-        <div>
+        <div className={classes.items}>
             <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
             return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
         })}
         </div>
-
     </div>
 }
 

@@ -17,7 +17,7 @@ const AddNewPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsTyp
     return (<form className={classes.postsArea} onSubmit={props.handleSubmit}>
             <div>
                 {createField<GetStringKeys<AddPostFormValuesType>>("Your post",
-                    'newPostText', [requieredField], Textarea, classes.addPostTextarea)}
+                    'newPostText', [], Textarea, classes.addPostTextarea)}
             </div>
             <div>
                 <button className={`btn-dark ${classes.buttonAdd}`}>Add post</button>
@@ -50,20 +50,16 @@ const MyPosts: React.FC<MapPropsType & MapDispatchType> = (props) => {
     return (
         <div>
             <Container className={classes.postsContainer}>
-                <Row className={'ml-auto mr-auto'}>
-                    <Col md={4}> </Col>
-                    <Col md={4} className={classes.posts}>
-                        <div>
+                <Row>
+                    <Col className={classes.posts}>
                             <h3 >Posts</h3>
                             <div>
                                 <AddNewPostFormForRedux onSubmit={onAddPost}/>
                             </div>
-                        </div>
-                        <div className={classes.posts}>
+                        <div >
                             {postElements}
                         </div>
                     </Col>
-                    <Col md={4}> </Col>
                 </Row>
             </Container>
         </div>

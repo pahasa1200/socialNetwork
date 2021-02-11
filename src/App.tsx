@@ -8,7 +8,7 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import {UsersPage} from "./Components/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import {LoginPage} from "./Components/Login/LoginPage";
+import LoginPage from "./Components/Login/LoginPage";
 import {Component} from "react";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
@@ -23,6 +23,7 @@ import {Affix, Menu} from 'antd';
 import { SmileOutlined, MailOutlined, UserOutlined, MessageOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import classes from "./Components/Navbar/NavbarList.module.css";
+import Footer from "./Components/Footer/Footer";
 
 const DialogsContainer = React.lazy(() => import("./Components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./Components/Profile/ProfileContainer"));
@@ -57,7 +58,7 @@ class App extends Component<MapPropsType & MapDispatchType> {
         }
         return (
             <>
-                <Container fluid={true}>
+                <Container fluid className={'fullContainer'}>
                     <Row>
                         <Col md={12} className='sidebar-wrapper'>
                             <HeaderContainer/>
@@ -83,6 +84,11 @@ class App extends Component<MapPropsType & MapDispatchType> {
                                     <Route path='*' render={() => <div>404 not found </div>}/>
                                 </Switch>
                             </div>
+                        </Col>
+                    </Row>
+                    <Row className={classes.footer}>
+                        <Col md={12}>
+                            <Footer />
                         </Col>
                     </Row>
                 </Container>

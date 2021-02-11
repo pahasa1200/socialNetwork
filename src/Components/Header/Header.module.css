@@ -6,7 +6,7 @@
 .login{
     display: inline-block;
     font-size: 1.2rem;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top:  -18px;
     float: right;
 }
@@ -15,5 +15,12 @@
     margin-top:  -18px;
     margin-right: 10px;
     float: right;
-
+}
+.headerPhoto{
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin-top:  -18px;
+    margin-right: 10px;
+    float: right;
 }

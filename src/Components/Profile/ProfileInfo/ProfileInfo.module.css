@@ -5,8 +5,8 @@
     display: block;
     text-align: center;
 }
-.contactsBlock{
-
+.contactsBlock .items{
+    margin-top: 5px;
 }
 
 .statusText {
@@ -16,8 +16,9 @@
     margin-top: 10px;
 }
 .contacts{
-    background-color: #dfdfdf;
     border-radius: 15px;
+    border: aliceblue 5px solid;
+    background-color: #dfdfdf;
 }
 .profileInfoContainer{
     margin-top: 20px;

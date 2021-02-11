@@ -1,4 +1,4 @@
-import {getUserLogin} from "./auth-reducer";
+import {getAuthUserData} from "./auth-reducer";
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
 
 //state
@@ -25,8 +25,8 @@ export const actions = {
 }
 
 //Thunks
-export const initializeApp = (): BaseThunkType<ActionsType> => async (dispatch) => {
-        let promise = await dispatch(getUserLogin());
+export const initializeApp = () =>  (dispatch: any) => {
+        let promise =  dispatch(getAuthUserData());
 
         Promise.all([promise]).then(() => {
         dispatch(actions.initializeSuccess());

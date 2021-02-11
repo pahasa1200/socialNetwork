@@ -9,6 +9,7 @@ import {ProfileType} from "../../Types/types";
 export type PropsType = {
     isAuth: boolean
     login: string | null
+    profile: ProfileType | null
 }
 export type DispatchType = {
     logout: () => void
@@ -21,10 +22,11 @@ const Header: React.FC<PropsType & DispatchType> = (props) => {
                 <img src={''}/>
                 <div>
                     {props.isAuth
-                        ? <div><div><span className={classes.login}>{props.login}</span>
+                        ? <div>
                             <Button size='sm' className={classes.loginButton} type='primary' onClick={props.logout}>Log out</Button>
-                            {/*<Image className={'a'} src={props.profile.photos.large || userPhoto} alt="Avatar" thumbnail/>*/}
-                        </div></div>
+                            <span className={classes.login}>{props.login}</span>
+                            <Image className={classes.headerPhoto} src={props.profile?.photos.small|| userPhoto} alt="Avatar" roundedCircle/>
+                        </div>
                         : <NavLink to="/login">Login</NavLink> }
                 </div>
             </header>

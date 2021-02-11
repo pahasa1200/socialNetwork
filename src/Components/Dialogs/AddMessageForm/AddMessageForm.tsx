@@ -16,7 +16,7 @@ const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormType, PropsType> 
                     <button className={`btn-danger ${classes.addNewMessageButton}`}>Send</button>
                 </div>
                 <div className={classes.formAddMessage}>
-                    {createField<DialogsFormValuesTypeKeys>("Enter your message", 'newMessageBody', [requieredField], Textarea, classes.addNewMessageArea)}
+                    {createField<DialogsFormValuesTypeKeys>("Enter your message", 'newMessageBody', [], Textarea, classes.addNewMessageArea)}
                 </div>
 
             </form>

@@ -1,0 +1,10 @@
+.footerBlock{
+    background-color: black;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerBlock h6 {
+    color: white!important;
+}
